@@ -1,0 +1,82 @@
+{% extends "base.html" %} 
+{% load static %}
+{% block contenido %}
+<div id="layoutSidenav_content">
+  <main>
+    <div class="container-fluid px-4">
+      <h1 class="mt-4">Listado de movimientos</h1>
+      <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active">Movimientos</li>
+      </ol>
+      <div class="row">
+      <div class="card mb-4">
+        <div class="card-header">
+          <i class="fas fa-table me-1"></i>
+          Listado de Gastos
+        </div>
+        <div class="card-body">
+          <table id="datatablesSimple">
+            <thead>
+              <tr>
+                <th>Tipo</th>
+                <th>Gasto Persona</th>
+                <th>Concepto</th>
+                <th>Fecha</th>
+                <th>Importe</th>
+                <th>Nota</th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            {% comment %} <tfoot>
+              <tr>
+                <th>Tipo</th>
+                <th>Gasto Persona</th>
+                <th>Concepto</th>
+                <th>Fecha</th>
+                <th>Importe</th>
+                <th>Nota</th>
+              </tr>
+            </tfoot> {% endcomment %}
+            <tbody>
+            {% for item in movimientos%}
+                <tr>
+                <td>{{item.tipo}}</td>
+                <td>{{item.category}}</td>
+                <td>{{item.concept}}</td>
+                <td>{{item.fecha}}</td>
+                <td>{{item.amount}}</td>
+                <td>{{item.note}}</td>
+               
+          
+                <td><a href="{% url 'finansas:actualizar-mov' pk=item.id %}" class="btn btn-warning">Editar</a></td>
+                <td><a href="{% url 'finansas:borrar-mov' pk=item.id %}" class="btn btn-danger">Borrar</a></td>
+              </tr>
+            {% endfor %} 
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="py-4 bg-light mt-auto">
+    <div class="container-fluid px-4">
+      <div class="d-flex align-items-center justify-content-between small">
+        <div class="text-muted">Copyright &copy; Your Website 2023</div>
+        <div>
+          <a href="#">Privacy Policy</a>
+          &middot;
+          <a href="#">Terms &amp; Conditions</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+{% endblock contenido %}
+
+
+{% block js %} 
+<script src="{% static '/js/datatableslist.js' %}"></script>
+{% endblock %}
+
