@@ -146,8 +146,9 @@
             </div>
           </div>
           <div class="sb-sidenav-footer">
-            <div class="small mb-2" >Online <div class="circle online"></div></div>
             {% if user.is_authenticated %}
+            <div class="small mb-2" >{{user.username}}<div class="circle online"></div></div>
+            
             {% if user.profile_image %}
                 <img class="img-fluid rounded" src="{{ user.profile_image.url }}" alt="{{ user.username }}'s profile image">
             {% else %}

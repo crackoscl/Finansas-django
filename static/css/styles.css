@@ -11244,7 +11244,7 @@ body {
 
 .circle {
   float: right;
-  margin-right: 66%;
+  margin-right: 55%;
   width: 20px; /* Ancho del círculo */
   height: 20px; /* Alto del círculo */
   border-radius: 50%; /* Hace que el div sea un círculo */
