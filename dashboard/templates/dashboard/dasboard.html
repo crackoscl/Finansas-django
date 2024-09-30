@@ -213,12 +213,15 @@
 <script src="{% static 'js/chart_dashboard.js' %}"></script>
 <script src="{% static 'js/datatables-dashboard.js' %}"></script>
 
+
+
 <script>
 
+$(document).ready(function () {
     charsMensual({{ grafico_mensual | safe}});
     charsAhorroMensual({{ grafico_mensual | safe}});
     charsProporcion({{ category_porcentajes | safe}});
-
+})
 </script>
 
 {% endblock js %}
