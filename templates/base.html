@@ -77,12 +77,14 @@
             </a></li>
             <li><a class="dropdown-item" href="#!">Activity Log</a></li> -->
             <!-- <li><hr class="dropdown-divider" /></li> -->
+            {% if user.is_authenticated %}
             <li>
               <form method="post" action="{% url 'logout' %}" style="display:inline;">
                 {% csrf_token %}
               <button type="submit" class="dropdown-item" style="border: none; background: none; cursor: pointer;">Logout</button>
             </form>
               </li>
+              {% endif %}
           </ul>
         </li>
       </ul>
