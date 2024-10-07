@@ -160,7 +160,7 @@
                                             {% for item in resultados_category_names %}
                                                 {% if item.category == category and item.month_name == month %}
                                             {% with gasto=item.gasto %}
-                                               {{ gasto|format_amount }}
+                                               {{ gasto }}
                                             {% endwith %}
                                             {% endif %}
                                             {% endfor %}
@@ -168,7 +168,7 @@
                                         </td>
                                         {% endfor %}
                                         <td>
-                                            {{ totales_por_categoria|get_item:category|format_amount }}
+                                            {{ totales_por_categoria|get_item:category }}
                                         </td>
                                     </tr>
                                     {% endfor %}

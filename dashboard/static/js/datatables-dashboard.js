@@ -21,30 +21,51 @@ $(document).ready(function () {
         }
     });
 
+
+    function formatCurrency(amount) {
+        // Formatea a cpl
+        return new Intl.NumberFormat('es-CL', {
+            style: 'currency',
+            currency: 'CLP'
+        }).format(amount);
+    }
+
     function calcularTotales() {
 
         var totalMensual = Array(table.columns().header().length - 1).fill(0); 
-        console.log(totalMensual)
+        
 
         table.rows().every(function () {
             var data = this.data();
 
             for (var i = 1; i <= totalMensual.length; i++) {
                 var valor = parseFloat(data[i]) || 0;
-
+                console.log(valor)
                 totalMensual[i - 1] += valor; 
+
+                data[i] = formatCurrency(valor)
             }
 
+           
+            this.data(data);
+
+
         });
+
+        
 
         $('#filaTotales').find('th').slice(1).remove();
 
         totalMensual.forEach(function (total) {
-            $('#filaTotales').append('<th data-dt-column="1" rowspan="1" colspan="1" class="dt-type-numeric dt-orderable-asc dt-orderable-desc" tabindex="0"><span class="dt-column-title"</span><span class="dt-column-order"></span>' + total.toFixed(0) + '</th>');
+            var formattedTotal = formatCurrency(total);
+            $('#filaTotales').append('<th data-dt-column="1" rowspan="1" colspan="1" class="dt-type-numeric dt-orderable-asc dt-orderable-desc" tabindex="0"><span class="dt-column-title"</span><span class="dt-column-order"></span>' + formattedTotal + '</th>');
         });
     }
 
+   
+
     calcularTotales();
+
     table.on('draw', function () {
         calcularTotales();
     });
