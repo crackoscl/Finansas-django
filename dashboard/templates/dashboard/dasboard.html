@@ -18,7 +18,7 @@
                     <div class="card bg-primary text-white mb-4">
                         <div class="card-body">
                             <h2>Salario</h2>
-                            <h4>$ {{salario}}</h4>
+                            <h4>{{ salario|format_amount }}</h4>
 
                         </div>
 
@@ -28,7 +28,7 @@
                     <div class="card bg-warning text-white mb-4">
                         <div class="card-body">
                             <h2>Gastos</h2>
-                            <h4>$ {{gastos}}</h4>
+                            <h4>{{ gastos|format_amount }}</h4>
                         </div>
 
                     </div>
@@ -37,7 +37,7 @@
                     <div class="card bg-success text-white mb-4">
                         <div class="card-body">
                             <h2>Ahorro</h2>
-                            <h4>$ {{ahorro}}</h4>
+                            <h4>{{ ahorro|format_amount }}</h4>
                         </div>
 
                     </div>
@@ -160,7 +160,7 @@
                                             {% for item in resultados_category_names %}
                                                 {% if item.category == category and item.month_name == month %}
                                             {% with gasto=item.gasto %}
-                                               {{ gasto }}
+                                               {{ gasto|format_amount }}
                                             {% endwith %}
                                             {% endif %}
                                             {% endfor %}
@@ -168,7 +168,7 @@
                                         </td>
                                         {% endfor %}
                                         <td>
-                                            {{ totales_por_categoria|get_item:category }}
+                                            {{ totales_por_categoria|get_item:category|format_amount }}
                                         </td>
                                     </tr>
                                     {% endfor %}
