@@ -60,7 +60,8 @@ class MovimientoForm(forms.ModelForm):
         elif self.instance.pk:
             self.fields["category"].queryset = Category.objects.filter(tipo=self.instance.tipo).order_by("name")
 
-
+   
+    
     def clean_amount(self):
         numero = self.cleaned_data.get("amount")
         if numero <= 0:
@@ -68,3 +69,18 @@ class MovimientoForm(forms.ModelForm):
                 "El número debe ser positivo y no puede ser cero."
             )
         return numero
+    
+
+
+    def clean_fecha(self):
+        cleaned_data = super().clean()
+        fecha = cleaned_data.get("fecha")
+        
+        if fecha and fecha > timezone.now().date():
+            raise forms.ValidationError("La fecha no puede ser mayor a la actua")
+        return fecha
+    
+  
+  
+    
+

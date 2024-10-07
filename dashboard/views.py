@@ -114,7 +114,7 @@ class DashBoard(LoginRequiredMixin, UserPassesTestMixin, View):
                     )
                 ),
             )
-            .order_by("month", "category__name")
+            .order_by("month")
         )
 
         totales_por_categoria = {}
@@ -137,11 +137,13 @@ class DashBoard(LoginRequiredMixin, UserPassesTestMixin, View):
                 totales_por_categoria[category] = 0
             totales_por_categoria[category] += resultado["gasto"]
 
-        unique_months_gastos = set(
+        unique_months_gastos = sorted(set(
             item["month_name"] for item in resultados_category_names
-        )
+        ))
 
         unique_categories = set(item["category"] for item in resultados_category_names)
+
+        
 
         return render(
             request,

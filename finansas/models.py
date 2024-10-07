@@ -24,15 +24,19 @@ class  Movimiento(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE,related_name='movimientos_by_category')
     tipo = models.ForeignKey(Tipo, on_delete=models.CASCADE,related_name='movimientos_by_tipo')
     fecha = models.DateField()
-    amount = models.DecimalField(max_digits=10, decimal_places=2,default=0.0)
+    amount = models.DecimalField(max_digits=10, decimal_places=4,default=0.0)
     note = models.TextField(max_length=200)
     concept =  models.TextField(max_length=500,blank=True,null=True)
     user = models.ForeignKey(User,on_delete=models.CASCADE,related_name='usuario')
+
  
     class Meta:
         verbose_name_plural = "Movimiento"
         
-    
+    def formatted_amount(self):
+        amount_int = int(self.amount)
+        #print(f"{self.amount:,.2f}".replace(',', 'X').replace('.', ',').replace('X', '.'))
+        return f"${amount_int:,}".replace(',', '.')
 
     def __str__(self) -> str:
         return self.tipo

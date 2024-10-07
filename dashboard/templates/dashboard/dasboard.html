@@ -158,7 +158,7 @@
                                         <td>
                                             {% with gasto=0 %}
                                             {% for item in resultados_category_names %}
-                                            {% if item.category == category and item.month_name == month %}
+                                                {% if item.category == category and item.month_name == month %}
                                             {% with gasto=item.gasto %}
                                                {{ gasto }}
                                             {% endwith %}
